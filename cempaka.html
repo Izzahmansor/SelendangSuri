@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>SS Cempaka Collection</title>
+    <style>
+        
+        .menu-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon.open {
+            background-color: #951b1b;
+            color: #fff;
+        }
+
+        #container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: #fdf1d5;
+            text-align: center;
+            z-index: 1000;
+            transition: all 0.6s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #container.open {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            text-align: center;
+        }
+
+        #menu li {
+            margin: 10px 0;
+        }
+
+        #menu li a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #951b1b;
+            transition: all 0.3s ease;
+        }
+
+        #menu li a:hover {
+            color: #fff;
+            background-color: #951b1b;
+            border-radius: 5px;
+        }
+
+        /* Nested submenu styling */
+        #menu ul {
+            margin-top: 10px;
+        }
+
+        #menu ul li a {
+            font-size: 18px;
+            color: #555;
+        }
+
+        #menu ul li a:hover {
+            color: #951b1b;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("batik.jpg");
+            color: #333;
+        }
+
+	
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a2c12;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            color: #fdf1d5;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 22px;
+            color: #fdf1d5;
+            margin: 0;
+        }
+
+        .product-grid {
+	    max-width: 800px;
+  	    margin: 0 auto;
+       	    padding: 20px;
+  	    background-color: #f5f5dc;
+  	    border-radius: 10px;
+ 	    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  	    box-sizing: border-box;
+        }
+
+        .product-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 40%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            flex: 1;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .product-card a {
+            flex: 1;
+        }
+
+	.buy-button {
+   	    display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #951b1b;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+	}
+
+	.buy-button:hover {
+            background-color: #fdf1d5;
+	}
+
+        .newsletter-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .newsletter-container h3 {
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #FFD700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .newsletter-container p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .newsletter-container input {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .newsletter-container button {
+            background-color: #FFD700;
+            color: #800000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .newsletter-container button:hover {
+            background-color: #FFC300;
+        }
+    </style>
+</head>
+
+
+<body>
+<!-- Menu Icon -->
+<i class="fa fa-bars menu-icon" onclick="toggleMenu()"></i>
+
+<!-- Overlay Menu -->
+<div id="container">
+    <ul id="menu">
+        <li><a href="mainmenu.html">Home</a></li>
+        <li><a href="newarrival.html">New Arrival</a></li>
+        <li>
+            <a href="collection.html">Our Collection</a>
+            <ul>
+                <li><a href="bungaraya.html">Bunga Raya</a></li>
+                <li><a href="anggerik.html">Anggerik</a></li>
+                <li><a href="cempaka.html">Cempaka</a></li>
+                <li><a href="melur.html">Melur</a></li>
+            </ul>
+        </li>
+        <li><a href="https://www.ninjavan.co/en-my/tracking" target="_blank">Track Order</a></b></li>
+        <li><a href="aboutus.html">About Us</a></li>
+    </ul>
+</div>
+
+    <header class="header">
+        <h1>Selendang Seri Cempaka Collection</h1>
+        <h2><i>"-Collection that attract confidence hijabis-"</i></h2>
+    </header>
+    <br></br>
+    <section class="product-grid">
+        <div class="product-card">
+            <img src="cempaka1.jpg" alt="Scarf 1">
+	<div class="product-details">
+            <h3><p>Scarf Code: Fuschia<p></h3>
+            <h3><p>Price: RM20<p></h3>
+            <a href= https://wa.link/2mjjk1 target=blank><button class="buy-button" onclick="buyItem('Fuschia')">Buy Now</a></button>
+	</div>
+        </div>
+        <br>
+        <div class="product-card">
+            <img src="cempaka2.jpg" alt="Scarf 2">
+	<div class="product-details">
+            <h3><p>Scarf Code: Emerald<p></h3>
+            <h3><p>Price: RM20<p></h3>
+            <a href= https://wa.link/9m6uhg target=blank><button class="buy-button" onclick="buyItem('Emerald')">Buy Now</a></button>
+        </div>
+	</div>
+        <br>
+        <div class="product-card">
+            <img src="cempaka3.jpg" alt="Scarf 3">
+	<div class="product-details">
+            <h3><p>Scarf Code: Midnight<p></h3>
+            <h3><p>Price: RM20<p></h3>
+            <a href= https://wa.link/d7iaam target=blank><button class="buy-button" onclick="buyItem('Midnight')">Buy Now</a></button>
+        </div>
+	</div>
+        <br>
+        <div class="product-card">
+            <img src="cempaka4.jpg" alt="Scarf 4">
+	<div class="product-details">
+            <h3><p>Scarf Code: Lavender<p></h3>
+            <h3><p>Price: RM20<p></h3>
+            <a href= https://wa.link/da5eze target=blank><button class="buy-button" onclick="buyItem('Lavender')">Buy Now</a></button>
+        </div>
+	</div>
+        <br>
+    </section>
+
+<!-- Footer Section -->
+<footer style="background-color: #4a2c12; color: #fff; font-family: Arial, sans-serif; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <!-- About Us Section -->
+        <div style="flex: 1 1 250px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">About Selendang Seri</h3>
+            <p style="margin: 10px 0;">Selendang Seri offers premium scarves crafted with care and dedication. Stay stylish, stay confident!</p>
+            <a href="aboutus.html" style="text-decoration: none; color: #FFD700;">Learn More →</a>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div style="flex: 1 1 200px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Quick Links</h3>
+            <ul style="list-style-type: none; padding: 0; margin: 10px 0;">
+                <li><a href="ourcollection.html" style="text-decoration: none; color: #FFD700;">Our Collection</a></li>
+                <li><a href="" style="text-decoration: none; color: #FFD700;">Contact Us</a></li>
+                <li><a href="faq.html" style="text-decoration: none; color: #FFD700;">FAQs</a></li>
+                <li><a href="faq.html" style="text-decoration: none; color: #FFD700;">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div style="flex: 1 1 250px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Contact Us</h3>
+            <p style="margin: 10px 0;">We’d love to connect with you! Reach us on:</p>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="https://www.instagram.com/selendangseri?igsh=MW0yY2p2YzNpZzE0MQ%3D%3D&utm_source=qr" target="_blank" style="text-decoration: none; color: #FFD700;">Instagram</a></li>
+                <li><a href="https://wa.me/60195568680" target="_blank" style="text-decoration: none; color: #FFD700;">WhatsApp</a></li>
+                <li><a href="https://t.me/zrazhri" target="_blank" style="text-decoration: none; color: #FFD700;">Telegram</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div style="flex: 1 1 300px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Stay Updated</h3>
+            <p style="margin: 10px 0;">Be the first to know about our latest collections and exclusive deals!</p>
+<form action="subscribe.php" method="POST" style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <input type="email" name="email" placeholder="Enter your email" required 
+        style="padding: 10px; border: none; border-radius: 4px; width: 70%;">
+    <button type="submit" 
+        style="background-color: #FFD700; color: #800000; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+        Subscribe
+    </button>
+</form>
+
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div style="text-align: center; margin-top: 30px;">
+
+        <p style="margin: 10px 0;">Follow Us:</p>
+
+        <a href="https://www.instagram.com/selendangseri?igsh=MW0yY2p2YzNpZzE0MQ%3D%3D&utm_source=qr" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="instagram-icon.png" alt="Instagram" style="width: 35px; height: 35px;">
+        </a>
+
+        <a href="https://wa.me/60195568680" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="whatsapp-icon.png" alt="WhatsApp" style="width: 24px; height: 24px;">
+        </a>
+
+        <a href="https://t.me/zrazhri" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="telegram-icon.png" alt="Telegram" style="width: 24px; height: 24px;">
+        </a>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="margin-top: 20px; text-align: center; font-size: 14px; color: #ddd;">
+        <p>&copy; 2025 Selendang Seri. All rights reserved.</p>
+        <p>Designed with ❤️ in Kuala Lumpur, Malaysia.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    function toggleMenu() {
+        const container = document.getElementById('container');
+        const menuIcon = document.querySelector('.menu-icon');
+        container.classList.toggle('open');
+        menuIcon.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>

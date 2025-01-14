@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Selempang Sari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon.open {
+            background-color: #951b1b;
+            color: #fff;
+        }
+
+        #container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: #fdf1d5;
+            text-align: center;
+            z-index: 1000;
+            transition: all 0.6s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #container.open {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            text-align: center;
+        }
+
+        #menu li {
+            margin: 10px 0;
+        }
+
+        #menu li a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #951b1b;
+            transition: all 0.3s ease;
+        }
+
+        #menu li a:hover {
+            color: #fff;
+            background-color: #951b1b;
+            border-radius: 5px;
+        }
+
+        /* Nested submenu styling */
+        #menu ul {
+            margin-top: 10px;
+        }
+
+        #menu ul li a {
+            font-size: 18px;
+            color: #555;
+        }
+
+        #menu ul li a:hover {
+            color: #951b1b;
+        }
+
+        .banner {
+            width: 100%;
+            height: 100vh;
+            background-image: url(background.jpeg);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .content {
+            width: 40%;
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            background-color: #fdf1d5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 180px;
+            color: white;
+            font-size: 14px;
+            padding: 12px 0;
+            background: #951b1b;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #951b1b;
+        }
+
+	.banner {
+    		width: 100%;
+    		height: 100vh;
+    		background-color: #f8f8f8;
+    		display: flex; /* Use flexbox to position content and video */
+    		justify-content: space-between;
+    		align-items: center;
+    		padding: 0 5%;
+	}
+
+	.video {
+    		width: 50%; /* Adjust video width */
+    		height: auto;
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+	}
+
+	.video video {
+  		width: 100%;
+    		height: auto;
+    		border-radius: 15px; /* Rounded corners for the video */
+    		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+	}
+
+	.content {
+    		width: 40%; /* Adjust the width of the content */
+    		background-color: #fdf1d5; /* Soft yellow background with transparency */
+    		padding: 20px; /* Add padding for better spacing */
+    		border-radius: 10px; /* Rounded corners */
+    		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    		color: #333; /* Text color for readability */
+	}
+
+	.content h1 {
+    		font-size: 36px;
+    		margin-bottom: 20px;
+	}
+
+	.content p {
+    		font-weight: 100;
+    		line-height: 1.6;
+    		margin-bottom: 20px;
+	}
+
+	.content button {
+    		padding: 10px 20px;
+    		background-color: #333;
+    		color: #fff;
+    		border: none;
+    		border-radius: 5px;
+    		cursor: pointer;
+    		font-size: 16px;
+    		transition: background-color 0.3s ease;
+	}
+
+	.content button:hover {
+    		background-color: #555;
+	}
+
+
+        button {
+            width: 180px;
+            color: white;
+            font-size: 14px;
+            padding: 12px 0;
+            background: #4a2c12; /* Adjusted button background */
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #951b1b;
+        }
+
+	.quote {
+            width: 100%;
+            height: 100vh;
+            background-image: url(backgroundquote.png);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+	    padding: 30px;    
+    }
+
+	.contentquote {
+                position: absolute;
+	        top: 57%;
+                left: 63%;
+                transform: translate(-50%,-50%);
+	}
+
+
+        :root {
+            --h2-font: 2rem;
+            --p-font: 1rem;
+            --main-color: #800000;
+            --text-color: #333;
+            --bg-color: #fff;
+            --other-color: #555;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        .center-text h2 {
+            text-align: center;
+            font-size: var(--h2-font);
+            font-weight: 800;
+            color: var(--text-color);
+        }
+
+        .new-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            align-items: center;
+            gap: 2.5rem;
+            margin: 2rem;
+            text-align: center;
+        }
+
+        .row-arrival {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+	.row-arrival img {
+		width: 30%; /* Adjust based on container width */
+   	 	max-width: 300px; /* Set a maximum width */
+    		height: auto; /* Maintain aspect ratio */
+    		margin-bottom: 15px;
+    		border-radius: 8px;
+    		transition: transform 0.3s ease;
+	}
+
+
+        .row-arrival img:hover {
+            transform: scale(1.05);
+        }
+
+        .row-arrival h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: color 0.5s ease;
+        }
+
+        .row-arrival h4:hover {
+            color: var(--main-color);
+            cursor: pointer;
+        }
+
+        .row-arrival h5 {
+            color: var(--other-color);
+            font-size: var(--p-font);
+            font-weight: 600;
+        }
+
+        .top-arrival {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 30px;
+            width: 60px;
+            background: var(--main-color);
+            color: var(--bg-color);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 5px 5px 0;
+        }
+
+  	.bar {
+    	    	padding: 50px 20px;
+    	    	text-align: center;
+	    	background: #951b1b;
+
+  	}
+
+  	.bar-boxs {
+    		display: flex;
+    		flex-wrap: wrap;
+    		justify-content: center;
+    		gap: 30px;
+  	}
+
+	.bar-box {
+  		position: relative;
+  		width: 250px;
+  		background: #fff;
+  		border: 3px solid #fdf1d5; /* Maroon border */
+  		border-radius: 10px;
+  		padding: 20px 15px;
+  		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  		text-align: center;
+	}
+
+  	.bar-box img {
+    		margin-top: 20px;
+    		width: 150px;
+    		height: 150px;
+  	}
+
+  	.bar-box p {
+    		margin-top: 20px;
+    		font-size: 14px;
+    		color: #555;
+  	}
+
+ 	.bar-box h1 {
+    		margin-top: 20px;
+    		font-size: 18px;
+    		font-weight: bold;
+    		color: #333;
+    		text-transform: uppercase;
+
+  	}
+
+	.blog {
+  		width: 100%;
+  		height: 700px;
+	}
+
+	.blog-boxs {
+  		display: flex;
+  		align-items: center;
+  		justify-content: space-between;
+  		gap: 10px;
+  		margin: 10px 60px;
+	}
+
+	.blog-boxs img {
+  		margin: 5px;
+  		box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  		border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  		border-radius: 0.5rem;
+	}
+
+	.ig2, .ig1 {
+  		width: 400px;
+  		height: 290px;
+	}
+
+	.blog-box1 img {
+  		height: 600px;
+	}
+
+	.whyus {
+  		background-color: #fdf1d5;
+ 		padding: 20px;
+ 	}
+
+	/* Create three equal columns that floats next to each other */
+
+	.column {
+  		float: left;
+		position: center;
+  		width: 30%;
+ 		padding: 15px;
+		gap: 50px;
+	}
+	.row {
+  		display: flex; /* Enable flexbox */
+ 		 justify-content: center; /* Center columns horizontally */
+  		align-items: center; /* Center columns vertically if needed */
+  		flex-wrap: wrap; /* Allow wrapping if the columns exceed the container width */
+  		gap: 50px; /* Add spacing between columns */
+	}
+
+	/* Clear floats after the columns */
+	.row::after {
+ 		content: "";
+  		display: table;
+  		clear: both;
+	}
+        .newsletter-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .newsletter-container h3 {
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #FFD700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .newsletter-container p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .newsletter-container input {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .newsletter-container button {
+            background-color: #FFD700;
+            color: #800000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .newsletter-container button:hover {
+            background-color: #FFC300;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<!-- Menu Icon -->
+<i class="fa fa-bars menu-icon" onclick="toggleMenu()"></i>
+
+<!-- Overlay Menu -->
+<div id="container">
+    <ul id="menu">
+        <li><a href="mainmenu.html">Home</a></li>
+        <li><a href="newarrival.html">New Arrival</a></li>
+        <li>
+            <a href="collection.html">Our Collection</a>
+            <ul>
+                <li><a href="bungaraya.html">Bunga Raya</a></li>
+                <li><a href="anggerik.html">Anggerik</a></li>
+                <li><a href="cempaka.html">Cempaka</a></li>
+                <li><a href="melur.html">Melur</a></li>
+            </ul>
+        </li>
+        <li><a href="https://www.ninjavan.co/en-my/tracking" target="_blank">Track Order</a></b></li>
+        <li><a href="aboutus.html">About Us</a></li>
+    </ul>
+</div>
+
+<!-- Banner Section -->
+<div class="banner">
+    <!-- Video Section -->
+    <div class="video">
+        <video autoplay muted loop>
+            <source src="video-homepage.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h1>Your Perfect Scarf Awaits</h1>
+        <p>From everyday essentials to statement pieces, we offer a variety of styles, fabrics, and designs to suit every occasion.</p>
+        <div>
+            <a href="#start"><button>Explore Now</button></a>
+        </div>
+    </div>
+</div>
+
+
+<a name ="start">
+
+<!-- Quote Section -->
+<div class="quote">
+	<div class="contentquote">
+		<p style="font-size: 200%;color:#fdf1d5;">"Style is a way  </p>
+		<p style="font-size: 200%;color:#fdf1d5;">to say who you are </p>
+		<p style="font-size: 200%;color:#fdf1d5;">without having to speak"</p>
+	</div>	
+</div>
+
+<div style="height: 50px;"></div>
+
+    <!-- New Arrival Section -->
+    <section class="new arrival">
+        <div class="center-text">
+            <h2>New Arrival Collection</h2>
+        </div>
+
+<div style="height: 50px;"></div>
+
+        <div class="new-content">
+            <div class="row-arrival">
+                <img src="new-arrival-1.jpg" alt="Kemboja Scarf">
+                <h4>Sulam Melayu</h4>
+                <h5>RM 20.00</h5>
+                <div class="top-arrival">
+                    <p>HOT</p>
+                </div>
+            </div>
+            <div class="row-arrival">
+                <img src="new-arrival-2.jpg" alt="Kemboja Scarf">
+                <h4>Seri Melayu</h4>
+                <h5>RM 20.00</h5>
+                <div class="top-arrival">
+                    <p>HOT</p>
+                </div>
+            </div>
+            <div class="row-arrival">
+                <img src="new-arrival-3.jpg" alt="Kemboja Scarf">
+                <h4>Gadis Mutiara</h4>
+                <h5>RM 20.00</h5>
+                <div class="top-arrival">
+                    <p>HOT</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div style="height: 100px;"></div>
+
+<!-- Our Collection Section -->
+<section class="bar">
+<div style="height: 50px;"></div>
+
+  <b><p style="font-size: 200%;color:#fdf1d5;">Our Collection</p></b>
+  <div style="height: 50px;"></div>
+  <div class="bar-boxs">
+    <div class="bar-box">
+      <a href="bungaraya.html">
+        <img src="bungaraya.jpg" alt="Bunga Raya" width="110" height="110">
+      </a>
+      <h1>Bunga Raya</h1>
+    </div>
+
+    <div class="bar-box">
+      <a href="anggerik.html">
+        <img src="anggerik.png" alt="Anggerik" width="110" height="110">
+      </a>
+      <h1>Anggerik</h1>
+    </div>
+
+    <div class="bar-box">
+      <a href="melur.html">
+        <img src="melur.png" alt="Melur" width="110" height="110">
+      </a>
+      <h1>Melur</h1>
+    </div>
+
+    <div class="bar-box">
+      <a href="cempaka.html">
+        <img src="cempaka.png" alt="Cempaka" width="110" height="110">
+      </a>
+      <h1>Cempaka</h1>
+    </div>
+  </div>
+
+<div style="height: 50px;"></div>
+
+</section> 
+
+<!-- Why Choose Us Section -->
+<div class="whyus">
+
+	<br><br><center><b><p style="background-color: #fdf1d5;color:#4a2c12;font-size: 150%;">Why Choose Us</p></b>
+	<br><br><br>
+	<div class="row">
+
+  <div class="column">
+
+    	<img src="limitededition.png" alt="Limited Edition" width="128" height="128">
+	<h2>Exclusive Designs</h2>
+	<div style="height: 20px;"></div>
+   		 <p>Our scarves are more than accessories—they’re works of art. We collaborate with talented designers to create unique patterns, colors, and styles that you won’t find anywhere else. From classic motifs to modern trends, there’s something for everyone.</p>
+  </div>
+  
+  <div class="column">
+
+	 <img src="affordable.png" alt="Affordable Tag" width="110" height="110">
+	 <div style="height: 20px;"></div>
+   	 <h2>Affordable Luxury</h2>
+	 <div style="height: 20px;"></div>
+   	 <p>We believe that elegance should be accessible to everyone. Our scarves strike the perfect balance between premium quality and affordability, allowing you to indulge in luxury without breaking the bank.</p>
+  </div>
+  
+  <div class="column">
+	<img src="premiumquality.png" alt="Premium Quality" width="128" height="128">
+    	<h2>Unmatched Quality</h2>
+	<div style="height: 20px;"></div>
+    	<p>Every scarf is crafted with precision and care using the finest materials, ensuring softness, durability</p></center>
+
+<div style="height: 50px;"></div>
+
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer style="background-color: #4a2c12; color: #fff; font-family: Arial, sans-serif; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <!-- About Us Section -->
+        <div style="flex: 1 1 250px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">About Selendang Seri</h3>
+            <p style="margin: 10px 0;">Selendang Seri offers premium scarves crafted with care and dedication. Stay stylish, stay confident!</p>
+            <a href="aboutus.html" style="text-decoration: none; color: #FFD700;">Learn More →</a>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div style="flex: 1 1 200px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Quick Links</h3>
+            <ul style="list-style-type: none; padding: 0; margin: 10px 0;">
+                <li><a href="ourcollection.html" style="text-decoration: none; color: #FFD700;">Our Collection</a></li>
+                <li><a href="" style="text-decoration: none; color: #FFD700;">Contact Us</a></li>
+                <li><a href="faq.html" style="text-decoration: none; color: #FFD700;">FAQs</a></li>
+                <li><a href="faq.html" style="text-decoration: none; color: #FFD700;">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div style="flex: 1 1 250px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Contact Us</h3>
+            <p style="margin: 10px 0;">We’d love to connect with you! Reach us on:</p>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="https://www.instagram.com/selendangseri?igsh=MW0yY2p2YzNpZzE0MQ%3D%3D&utm_source=qr" target="_blank" style="text-decoration: none; color: #FFD700;">Instagram</a></li>
+                <li><a href="https://wa.me/60195568680" target="_blank" style="text-decoration: none; color: #FFD700;">WhatsApp</a></li>
+                <li><a href="https://t.me/zrazhri" target="_blank" style="text-decoration: none; color: #FFD700;">Telegram</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div style="flex: 1 1 300px;">
+            <h3 style="border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 5px;">Stay Updated</h3>
+            <p style="margin: 10px 0;">Be the first to know about our latest collections and exclusive deals!</p>
+<form action="subscribe.php" method="POST" style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <input type="email" name="email" placeholder="Enter your email" required 
+        style="padding: 10px; border: none; border-radius: 4px; width: 70%;">
+    <button type="submit" 
+        style="background-color: #FFD700; color: #800000; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+        Subscribe
+    </button>
+</form>
+
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div style="text-align: center; margin-top: 30px;">
+
+        <p style="margin: 10px 0;">Follow Us:</p>
+
+        <a href="https://www.instagram.com/selendangseri?igsh=MW0yY2p2YzNpZzE0MQ%3D%3D&utm_source=qr" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="instagram-icon.png" alt="Instagram" style="width: 35px; height: 35px;">
+        </a>
+
+        <a href="https://wa.me/60195568680" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="whatsapp-icon.png" alt="WhatsApp" style="width: 24px; height: 24px;">
+        </a>
+
+        <a href="https://t.me/zrazhri" target="_blank" style="text-decoration: none; margin: 0 10px;">
+            <img src="telegram-icon.png" alt="Telegram" style="width: 24px; height: 24px;">
+        </a>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="margin-top: 20px; text-align: center; font-size: 14px; color: #ddd;">
+        <p>&copy; 2025 Selendang Seri. All rights reserved.</p>
+        <p>Designed with ❤️ in Kuala Lumpur, Malaysia.</p>
+    </div>
+</footer>
+
+
+
+<!-- JavaScript -->
+<script>
+    function toggleMenu() {
+        const container = document.getElementById('container');
+        const menuIcon = document.querySelector('.menu-icon');
+        container.classList.toggle('open');
+        menuIcon.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>

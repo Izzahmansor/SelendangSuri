@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selempang Sari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #4a2c12;
+            font-family: Arial, sans-serif;
+            margin: 5px;
+        }
+
+        .navbar {
+            width: 90%; /* Adjusted for better responsiveness */
+            margin: auto;
+            background-color: #4a2c12;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            padding: 10px 0; /* Adds spacing */
+        }
+
+        .logo {
+            width: 130px;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            display: flex;
+            flex-wrap: wrap; /* Allows menu items to wrap */
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            display: inline-block;
+            margin: 0 15px; /* Reduced margin for smaller screens */
+            position: relative;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fdf1d5;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .navbar ul li::after {
+            content: '';
+            height: 3px;
+            width: 0;
+            background: #fdf1d5;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            transition: 0.5s;
+        }
+
+        .navbar ul li:hover::after {
+            width: 100%;
+        }
+
+        /* Media queries for responsiveness */
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start;
+            }
+
+            .navbar ul {
+                flex-direction: column; /* Stack menu items */
+                width: 100%; /* Full width on smaller screens */
+                align-items: flex-start;
+            }
+
+            .navbar ul li {
+                margin: 10px 0; /* Add vertical spacing between menu items */
+            }
+
+            .navbar ul li a {
+                font-size: 16px; /* Slightly larger text for readability */
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .logo {
+                width: 100px; /* Smaller logo for very small screens */
+            }
+
+            .navbar ul li a {
+                font-size: 14px; /* Adjust font size further for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="logo.png" class="logo" alt="Logo">
+            <ul>
+                <li><b><a class="active" href="mainmenu.html" target="bottom">Home</a></b></li>
+                <li><b><a href="newarrival.html" target="bottom">New Arrival</a></b></li>
+                <li><b><a href="collection.html" target="bottom">Our Collection</a></b></li>
+		<li><b><a href="https://www.ninjavan.co/en-my/tracking" target="_blank">Track Order</a></b></li>
+                <li><b><a href="aboutus.html" target="bottom">About Us</a></b></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
