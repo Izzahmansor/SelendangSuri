@@ -128,24 +128,24 @@ body {
 .accordion-button {
     background-color: #800000;
     color: #fff;
-    cursor: pointer;
     padding: 15px;
     width: 100%;
     text-align: left;
     font-size: 1.1em;
     border: none;
+    cursor: pointer;
     outline: none;
-    transition: background-color 0.3s ease;
-}
-
-.accordion-button:hover {
-    background-color: #993333;
 }
 
 .accordion-content {
     display: none;
     padding: 15px;
     background-color: #f9f9f9;
+}
+
+
+.accordion-button:hover {
+    background-color: #993333;
 }
 
 .accordion-content p,
@@ -374,12 +374,17 @@ body {
 
 <!-- JavaScript -->
 <script>
-    function toggleMenu() {
-        const container = document.getElementById('container');
-        const menuIcon = document.querySelector('.menu-icon');
-        container.classList.toggle('open');
-        menuIcon.classList.toggle('open');
-    }
+    document.querySelectorAll('.accordion-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            button.classList.toggle('active');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    });
 </script>
 
 
